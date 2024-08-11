@@ -1,6 +1,4 @@
-### 1. Singleton Pattern
 
-```markdown
 # Singleton Pattern
 
 ## Descripción
