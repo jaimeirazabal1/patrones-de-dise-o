@@ -49,11 +49,11 @@ anotherLogger.printLogCount();  // 2 Logs
 
 console.log(logger === anotherLogger);  // true
 ```
-```
+
 
 ### 2. Factory Pattern
 
-```markdown
+
 # Factory Pattern
 
 ## Descripción
@@ -105,11 +105,11 @@ console.log(car.type);  // Car
 const truck = factory.createVehicle('truck');
 console.log(truck.type);  // Truck
 ```
-```
+
 
 ### 3. Observer Pattern
 
-```markdown
+
 # Observer Pattern
 
 ## Descripción
@@ -167,11 +167,11 @@ subject.subscribe(observer2);
 
 subject.notify('Hello Observers!');  // Observer 1 and Observer 2 receive the data
 ```
-```
+
 
 ### 4. Decorator Pattern
 
-```markdown
+
 # Decorator Pattern
 
 ## Descripción
@@ -211,11 +211,11 @@ console.log(myCoffee.cost());  // 5
 myCoffee = milkDecorator(myCoffee);
 console.log(myCoffee.cost());  // 6.5
 ```
-```
+
 
 ### 5. Middleware Pattern
 
-```markdown
+
 # Middleware Pattern
 
 ## Descripción
@@ -260,11 +260,11 @@ app.get('/', (req, res) => {
 
 app.listen(3000, () => console.log('Server running on port 3000'));
 ```
-```
+
 
 ### 6. Dependency Injection Pattern
 
-```markdown
+
 # Dependency Injection Pattern
 
 ## Descripción
@@ -307,11 +307,11 @@ const userService = new UserService(logger);
 
 userService.createUser({ name: 'John Doe' });
 ```
-```
+
 
 ### 7. MVC (Model-View-Controller) Pattern
 
-```markdown
+
 # MVC (Model-View-Controller) Pattern
 
 ## Descripción
