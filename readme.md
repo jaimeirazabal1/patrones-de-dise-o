@@ -1,13 +1,29 @@
+### README para los Patrones de Diseño en Node.js
 
-# Singleton Pattern
+---
 
-## Descripción
+## Índice
+
+1. [Singleton Pattern](#singleton-pattern)
+2. [Factory Pattern](#factory-pattern)
+3. [Observer Pattern](#observer-pattern)
+4. [Decorator Pattern](#decorator-pattern)
+5. [Middleware Pattern](#middleware-pattern)
+6. [Dependency Injection Pattern](#dependency-injection-pattern)
+7. [MVC (Model-View-Controller) Pattern](#mvc-pattern)
+
+---
+
+### <a id="singleton-pattern"></a>1. Singleton Pattern
+
+**Descripción**  
 El patrón Singleton garantiza que una clase tenga una única instancia y proporciona un punto de acceso global a dicha instancia. Este patrón es útil para controlar un recurso compartido o mantener un estado global en la aplicación.
 
-## Implementación en Node.js
+**Implementación en Node.js**  
 En Node.js, los módulos se comportan naturalmente como Singletons. Esto significa que cuando se `require` un módulo, la misma instancia es compartida a través de toda la aplicación.
 
-### Ejemplo
+**Ejemplo**
+
 ```javascript
 // logger.js
 class Logger {
@@ -35,7 +51,8 @@ Object.freeze(logger);  // Previene modificaciones a la instancia
 module.exports = logger;
 ```
 
-### Uso
+**Uso**
+
 ```javascript
 // app.js
 const logger = require('./logger');
@@ -50,19 +67,18 @@ anotherLogger.printLogCount();  // 2 Logs
 console.log(logger === anotherLogger);  // true
 ```
 
+---
 
-### 2. Factory Pattern
+### <a id="factory-pattern"></a>2. Factory Pattern
 
-
-# Factory Pattern
-
-## Descripción
+**Descripción**  
 El patrón Factory proporciona una manera de crear objetos sin especificar la clase exacta del objeto que se creará. Este patrón es útil cuando el proceso de creación requiere lógica adicional.
 
-## Implementación en Node.js
+**Implementación en Node.js**  
 En Node.js, el patrón Factory se puede implementar utilizando funciones que retornan instancias de objetos basados en parámetros.
 
-### Ejemplo
+**Ejemplo**
+
 ```javascript
 // vehicleFactory.js
 class Car {
@@ -93,7 +109,8 @@ class VehicleFactory {
 module.exports = VehicleFactory;
 ```
 
-### Uso
+**Uso**
+
 ```javascript
 // app.js
 const VehicleFactory = require('./vehicleFactory');
@@ -106,19 +123,18 @@ const truck = factory.createVehicle('truck');
 console.log(truck.type);  // Truck
 ```
 
+---
 
-### 3. Observer Pattern
+### <a id="observer-pattern"></a>3. Observer Pattern
 
-
-# Observer Pattern
-
-## Descripción
+**Descripción**  
 El patrón Observer define una relación de dependencia uno-a-muchos entre objetos, de modo que cuando un objeto cambia de estado, todos sus dependientes son notificados y actualizados automáticamente.
 
-## Implementación en Node.js
+**Implementación en Node.js**  
 Este patrón es útil para eventos, donde un objeto "sujeto" notifica a múltiples "observadores".
 
-### Ejemplo
+**Ejemplo**
+
 ```javascript
 // Subject.js
 class Subject {
@@ -153,7 +169,8 @@ class Observer {
 module.exports = { Subject, Observer };
 ```
 
-### Uso
+**Uso**
+
 ```javascript
 // app.js
 const { Subject, Observer } = require('./Subject');
@@ -168,19 +185,18 @@ subject.subscribe(observer2);
 subject.notify('Hello Observers!');  // Observer 1 and Observer 2 receive the data
 ```
 
+---
 
-### 4. Decorator Pattern
+### <a id="decorator-pattern"></a>4. Decorator Pattern
 
-
-# Decorator Pattern
-
-## Descripción
+**Descripción**  
 El patrón Decorator permite añadir funcionalidad a un objeto de manera dinámica sin modificar su estructura original. Es útil cuando necesitas extender la funcionalidad de clases sin heredar de ellas.
 
-## Implementación en Node.js
+**Implementación en Node.js**  
 Se implementa creando una función que toma un objeto y lo envuelve con funcionalidades adicionales.
 
-### Ejemplo
+**Ejemplo**
+
 ```javascript
 // coffee.js
 class Coffee {
@@ -200,7 +216,8 @@ function milkDecorator(coffee) {
 module.exports = { Coffee, milkDecorator };
 ```
 
-### Uso
+**Uso**
+
 ```javascript
 // app.js
 const { Coffee, milkDecorator } = require('./coffee');
@@ -212,19 +229,18 @@ myCoffee = milkDecorator(myCoffee);
 console.log(myCoffee.cost());  // 6.5
 ```
 
+---
 
-### 5. Middleware Pattern
+### <a id="middleware-pattern"></a>5. Middleware Pattern
 
-
-# Middleware Pattern
-
-## Descripción
+**Descripción**  
 El patrón Middleware es muy común en aplicaciones Node.js, especialmente en frameworks como Express. Permite agregar funcionalidades adicionales (como autenticación, manejo de errores, etc.) en la cadena de manejo de solicitudes.
 
-## Implementación en Node.js
+**Implementación en Node.js**  
 Se implementa encadenando funciones que procesan una solicitud antes de que llegue al manejador final.
 
-### Ejemplo
+**Ejemplo**
+
 ```javascript
 // middleware.js
 function logger(req, res, next) {
@@ -243,7 +259,8 @@ function auth(req, res, next) {
 module.exports = { logger, auth };
 ```
 
-### Uso
+**Uso**
+
 ```javascript
 // app.js
 const express = require('express');
@@ -261,19 +278,18 @@ app.get('/', (req, res) => {
 app.listen(3000, () => console.log('Server running on port 3000'));
 ```
 
+---
 
-### 6. Dependency Injection Pattern
+### <a id="dependency-injection-pattern"></a>6. Dependency Injection Pattern
 
-
-# Dependency Injection Pattern
-
-## Descripción
+**Descripción**  
 El patrón Dependency Injection maneja las dependencias de las clases de manera más flexible y modular, permitiendo inyectar las dependencias desde afuera en lugar de instanciarlas internamente.
 
-## Implementación en Node.js
+**Implementación en Node.js**  
 Se puede implementar inyectando dependencias a través del constructor o mediante setters.
 
-### Ejemplo
+**Ejemplo**
+
 ```javascript
 // logger.js
 class Logger {
@@ -297,7 +313,8 @@ class UserService {
 module.exports = { Logger, UserService };
 ```
 
-### Uso
+**Uso**
+
 ```javascript
 // app.js
 const { Logger, UserService } = require('./logger');
@@ -308,21 +325,20 @@ const userService = new UserService(logger);
 userService.createUser({ name: 'John Doe' });
 ```
 
+---
 
-### 7. MVC (Model-View-Controller) Pattern
+### <a id="mvc-pattern"></a>7. MVC (Model-View-Controller) Pattern
 
-
-# MVC (Model-View-Controller) Pattern
-
-## Descripción
+**Descripción**  
 El patrón MVC divide una aplicación en tres partes interconectadas: el Modelo gestiona los datos, la Vista presenta los datos y el Controlador maneja la entrada del usuario.
 
-## Implementación en Node.js
+**Implementación en Node.js**  
 Este patrón es comúnmente utilizado en aplicaciones web para separar las responsabilidades y facilitar la mantenibilidad.
 
-### Ejemplo
+**Ejemplo**
 
-#### Modelo
+**Modelo**
+
 ```javascript
 // userModel.js
 class UserModel {
@@ -343,7 +359,8 @@ class UserModel {
 module.exports = UserModel;
 ```
 
-#### Vista
+**Vista**
+
 ```javascript
 // userView.js
 class UserView {
@@ -357,7 +374,8 @@ class UserView {
 module.exports = UserView;
 ```
 
-#### Controlador
+**Controlador**
+
 ```javascript
 // userController.js
 class UserController {
@@ -380,7 +398,8 @@ class UserController {
 module.exports = UserController;
 ```
 
-### Uso
+**Uso**
+
 ```javascript
 // app.js
 const UserModel = require('./userModel');
@@ -389,8 +408,11 @@ const UserController = require('./userController');
 
 const model = new UserModel();
 const view = new UserView();
-const controller = new UserController(model, view);
+const controller = new User
+
+Controller(model, view);
 
 controller.addUser('John Doe');
 controller.showAllUsers();
 ```
+
